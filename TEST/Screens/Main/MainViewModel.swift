@@ -27,8 +27,8 @@ class MainViewModel: MainViewModelType {
             case .success(let response):
                 self?.items = response
                 self?.onReload()
-            case .failure(let failure):
-                print(failure.localizedDescription)
+            case .failure:
+                self?.getItems()
             }
         }
     }
@@ -36,7 +36,7 @@ class MainViewModel: MainViewModelType {
     func route(to route: MainCoordinator.Route) {
         coordinator.route(to: route)
     }
-
+    
     
     deinit {
         printDeinit(self)

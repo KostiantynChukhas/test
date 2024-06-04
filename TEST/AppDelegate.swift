@@ -1,5 +1,4 @@
 
-
 import UIKit
 
 @main
@@ -15,9 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             appCoordinator = AppCoordinator(window: window)
             appCoordinator?.start()
         }
-        
-        
-        
         return true
     }
 }

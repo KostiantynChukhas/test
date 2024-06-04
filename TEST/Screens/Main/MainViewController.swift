@@ -4,12 +4,12 @@ import UIKit
 class MainViewController: BaseController {
     
     lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
-        tableView.rowHeight = UIScreen.main.bounds.size.width + 100
+        tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
@@ -17,6 +17,8 @@ class MainViewController: BaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Home"
+        
         setupTableView()
         bindData()
     }
@@ -31,19 +33,16 @@ class MainViewController: BaseController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
     private func setupTableView() {
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.identifier)
-
-        
         tableView.dataSource = self
-        tableView.delegate = self
     }
     
     private func bindData() {
@@ -61,7 +60,7 @@ class MainViewController: BaseController {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         viewModel.items.count
+        viewModel.items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,8 +68,4 @@ extension MainViewController: UITableViewDataSource {
         cell.configure(with: viewModel.items[indexPath.row])
         return cell
     }
-}
-
-extension MainViewController: UITableViewDelegate {
-    
 }

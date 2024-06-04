@@ -18,16 +18,12 @@ class MainCoordinator {
     
     weak var transitions: MainCoordinatorTransitions?
     
-    private weak var navigationController: UINavigationController?
-    private var controller: MainViewController? = MainViewController()
+    private let window: UIWindow
+    private lazy var root = UINavigationController(rootViewController: controller)
+    private var controller: MainViewController = MainViewController()
     
-    private var viewModel: MainViewModelType? {
-        return controller?.viewModel
-    }
-    
-    init(navigationController: UINavigationController?) {
-        self.navigationController = navigationController
-        controller?.viewModel = MainViewModel(self)
+    init(window: UIWindow) {
+        self.window = window
     }
     
     deinit {
@@ -45,9 +41,13 @@ extension MainCoordinator {
     }
     
     private func start() {
-        if let controller = controller {
-            navigationController?.pushViewController(controller, animated: true)
-        }
+        controller.viewModel = MainViewModel(self)
+
+        root.setNavigationBarHidden(false, animated: false)
+        root.setViewControllers([controller], animated: false)
+        
+        window.rootViewController = root
+        window.makeKeyAndVisible()
     }
     
 }

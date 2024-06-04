@@ -44,7 +44,7 @@ extension SplashCoordinator {
     
     private func start() {
         if let controller = controller {
-            navigationController?.pushViewController(controller, animated: true)
+            navigationController?.pushViewController(controller, animated: false)
         }
     }
     

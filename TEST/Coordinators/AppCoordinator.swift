@@ -9,8 +9,6 @@ import UIKit
 class AppCoordinator {
     private var window: UIWindow
     private let serviceHolder = ServiceHolder.shared
-    private var coordinator: MainCoordinator?
-    private var spalshCoordinator: SplashCoordinator?
     
     private lazy var root: UINavigationController = {
         let root = UINavigationController()
@@ -30,14 +28,14 @@ class AppCoordinator {
     }
     
     private func startSplash() {
-        spalshCoordinator = SplashCoordinator(navigationController: root)
-        spalshCoordinator?.transitions = self
-        spalshCoordinator?.route(to: .`self`)
+        let spalshCoordinator = SplashCoordinator(navigationController: root)
+        spalshCoordinator.transitions = self
+        spalshCoordinator.route(to: .`self`)
     }
     
     private func startMain() {
-        coordinator = MainCoordinator(navigationController: root)
-        coordinator?.route(to: .`self`)
+        let coordinator = MainCoordinator(window: window)
+        coordinator.route(to: .`self`)
     }
 }
 

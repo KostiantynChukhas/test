@@ -145,13 +145,6 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		B8D348C62C07B77900252023 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
 		E4A90E02271EB07E00F91C81 = {
 			isa = PBXGroup;
 			children = (
@@ -240,7 +233,6 @@
 		E4A90E3A271EB5C100F91C81 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				B8D348C62C07B77900252023 /* Core */,
 				E4A90E55271EBBE200F91C81 /* Extensions */,
 				E4A90E50271EBB7500F91C81 /* Utils */,
 				E4A90EAD271EF18300F91C81 /* Defines.swift */,
